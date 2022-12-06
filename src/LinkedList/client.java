@@ -12,7 +12,7 @@ ll.addLast(40);
 ll.addLast(50);
 ll.addFirst(100);
 ll.addFirst(90);
-ll.display();
+//ll.display();
 System.out.println("*****");
 //ll.fold2();
 //ll.display();
