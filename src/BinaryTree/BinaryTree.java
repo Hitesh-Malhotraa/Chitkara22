@@ -1,5 +1,6 @@
 package BinaryTree;
 import java.util.Scanner;
+import java.util.*;
 public class BinaryTree {
 
 	class Node{
@@ -14,7 +15,7 @@ public class BinaryTree {
 	{
 		scn=new Scanner(str);
 		root=construct(null,true);
-		display(root);
+		//display(root);
 	//root 10k h 
 	}
 	public Node  construct(Node root,boolean lc)
@@ -89,5 +90,183 @@ public int size(Node root)
 int lst=size(root.left);
 int rst=size(root.right);
 return lst+rst+1;
+}
+public int height()
+{
+	return height(root);
+}
+public  int height(Node root)
+{
+	if(root==null)
+	{
+		return -1;
+	}
+	int lh=height(root.left);
+	int rh=height(root.right);
+	return Math.max(lh, rh)+1;
+}
+public int max()
+{
+	return max(root);
+}
+private int max(Node root)
+{if(root==null)
+{
+	return Integer.MIN_VALUE;
+}
+	int lmax=max(root.left);
+	int rmax=max(root.right);
+	int res= Math.max(lmax,rmax);
+return Math.max(res, root.val);
+}
+public int min()
+{
+	return min(root);
+}
+private int min(Node root)
+{
+	if(root==null)
+	{
+		return Integer.MAX_VALUE;
+	}
+	int lmin=min(root.left);
+	int rmin=min(root.right);
+	return Math.min(lmin, Math.min(rmin, root.val));
+}
+public void leveorder()
+{
+	levelorder(root);
+}
+private void levelorder(Node root)
+{
+LinkedList<Node>q=new LinkedList();
+q.addLast(root);
+while(!q.isEmpty())
+{
+	Node temp=q.removeFirst();
+	System.out.print(temp.val+" ");
+	if(temp.left!=null)
+	{
+		q.addLast(temp.left);
+	}
+	if(temp.right!=null)
+	{
+		q.addLast(temp.right);
+	}
+}
+
+}
+public void levelOrder2()
+{
+	levelOrder2(root);
+}
+private void levelOrder2(Node root)
+{
+	LinkedList<Node>q=new LinkedList();
+	q.addLast(root);
+	q.addLast(null);
+	while(!q.isEmpty())
+	{
+	Node temp=q.removeFirst();
+	if(temp==null)
+	{
+		if(q.isEmpty())
+		{
+			break;
+		}
+		q.addLast(null);
+		System.out.println();
+		continue;
+	}
+	System.out.print(temp.val+" ");
+	if(temp.left!=null)
+	{
+		q.addLast(temp.left);
+	}
+	if(temp.right!=null)
+	{
+		q.addLast(temp.right);
+	}
+	}
+}
+public void levelOrder3()
+{
+	levelOrder3(root);
+}
+private void levelOrder3(Node root)
+{
+	LinkedList<Node>q=new LinkedList();
+	LinkedList<Node>hlp=new LinkedList();
+	q.addLast(root);
+	while(!q.isEmpty())
+	{
+		Node temp=q.removeFirst();
+		System.out.print(temp.val+" ");
+		if(temp.left!=null)
+		{
+			hlp.addLast(temp.left);
+		}
+		if(temp.right!=null)
+		{
+			hlp.addLast(temp.right);
+		}
+		if(q.isEmpty())
+		{
+			System.out.println();
+			q=hlp;
+			hlp=new LinkedList();
+		}
+	}
+}
+public void preOrder()
+{
+	preOrder(root);
+}
+private void preOrder(Node root)
+{
+	if(root==null)
+	{
+		return ;
+	}
+	System.out.println(root.val);//N wala kaam hogya;
+	//mujhe left wala kaam krna h 
+	preOrder(root.left);//left wala kaam hogya;
+	//mujhe right wala kaam krna h
+	preOrder(root.right);
+	
+	
+}
+public void postOrder()
+{
+	postOrder(root);
+}
+private void postOrder(Node root)
+{if(root==null)
+{
+	return ;
+}
+	//left;
+	postOrder(root.left);
+	//right
+	postOrder(root.right);
+	System.out.println(root.val);
+}
+public void inOrder()
+{
+	inOrder(root);
+}
+private void inOrder(Node root)
+{
+	if(root==null)
+	{
+		return ;
+	}
+	//left;
+	inOrder(root.left);
+	//node ka kaam;
+	System.out.println(root.val);
+	//right;
+	inOrder(root.right);
+	
 }
 }
