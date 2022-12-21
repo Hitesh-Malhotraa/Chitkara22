@@ -15,7 +15,7 @@ public class BinaryTree {
 	{
 		scn=new Scanner(str);
 		root=construct(null,true);
-		//display(root);
+		display(root);
 	//root 10k h 
 	}
 	public Node  construct(Node root,boolean lc)
@@ -269,4 +269,99 @@ private void inOrder(Node root)
 	inOrder(root.right);
 	
 }
+//public static class node{
+//	int data;
+//	node left;
+//	node right;
+//	 node(int val){
+//		data=val;
+//		left=null;
+//		right=null;
+//	}
+//}
+//public static node createTree(node root) {
+//	Scanner sc = new Scanner(System.in);
+//	int data=sc.nextInt();
+//	root= new node(data);
+//	if(data==-1) {
+//		return null;
+//	}
+//	root.left=createTree(root.left);
+//	root.right=createTree(root.right);
+//	return root;
+//}
+//public static void printTree(node root) {
+//	if(root==null) {
+//		return;
+//	}
+//	System.out.println(root.data);
+//	if(root.left!=null) {
+//		printTree(root.left);
+//	}
+//	if(root.right!=null) {
+//		printTree(root.right);
+//	}
+//}
+public ArrayList<ArrayList<Integer>> zigzag()
+{
+	return zigZagTraversal(root);
+}
+public ArrayList<ArrayList<Integer>> zigZagTraversal(Node root) {
+	ArrayList<ArrayList<Integer>> arr2 = new ArrayList<>();
+	Queue<Node> q = new LinkedList<Node>();
+	q.add(root);
+	boolean leftToRight=true;
+	while(!q.isEmpty()) {
+	int size=q.size();
+	ArrayList<Integer> ans = new ArrayList<>();
+	for(int i=0;i<size;i++){
+		Node front = q.poll();
+		//System.out.println(front.val);
+		ans.add(front.val);
+//		if(leftToRight==true) {
+//			
+//			ans.add(i,front.val);
+//		}
+//		else {
+//			ans.add(size-i-1,front.val);
+//		}
+		if(front.left!=null) {
+			q.add(front.left);
+		}
+		if(front.right!=null) {
+			q.add(front.right);
+		}
+	}
+	
+	if(leftToRight==false) {
+		ArrayList<Integer>sol=new ArrayList();
+		for(int i=ans.size()-1;i>=0;i--)
+		{
+			sol.add(ans.get(i));
+		}
+		ans=sol;
+	}
+	leftToRight=!leftToRight;
+	arr2.add(ans);
+}			
+	return arr2;
+}
+
+//public static void main(String[] args) {
+//	// TODO Auto-generated method stub
+//	node root = null;
+//	root = createTree(root);
+////	printTree(root);
+//	ArrayList<ArrayList<Integer>> ansf;
+//	ansf = zigZagTraversal(root);
+//	for(int i=0;i<ansf.size();i++) {
+//		for(int j=0;j<ansf.get(i).size();j++) {
+//			System.out.print(ansf.get(i).get(j));
+//		}
+//		System.out.println();
+//	}
+//
+//}
+
+
 }

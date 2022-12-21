@@ -9,13 +9,46 @@ public class BinarySearchTree {
 	}
 	int arr[];
 	Node root=null;
+	public BinarySearchTree()
+	{
+		
+	}
 	public BinarySearchTree(int arr[])
 	{
 		this.arr=arr;
 	root=construct(arr,0,arr.length-1);
 	display(root);
 	}
-	public void display(Node root)
+	public void add(int val)
+	{
+		Node temp=add(root,val);
+	if(root==null)
+	{
+		this.root=temp;
+	}
+	}
+	public Node add(Node root,int val)
+	{
+		if(root==null)
+		{
+			Node nn=new Node();
+			nn.val=val;
+			return nn;
+		}
+		if(root.val>val)
+		{
+			root.left=add(root.left,val);
+		}
+		else {
+			root.right=add(root.right,val);
+		}
+		return root;
+	}
+	public void display()
+	{
+		display(root);
+	}
+	private void display(Node root)
 	{
 		if(root==null)
 		{
