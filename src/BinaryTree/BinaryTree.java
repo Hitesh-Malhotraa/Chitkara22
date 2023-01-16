@@ -1,5 +1,4 @@
 package BinaryTree;
-import java.util.Scanner;
 import java.util.*;
 public class BinaryTree {
 
@@ -347,21 +346,49 @@ public ArrayList<ArrayList<Integer>> zigZagTraversal(Node root) {
 	return arr2;
 }
 
-//public static void main(String[] args) {
-//	// TODO Auto-generated method stub
-//	node root = null;
-//	root = createTree(root);
-////	printTree(root);
-//	ArrayList<ArrayList<Integer>> ansf;
-//	ansf = zigZagTraversal(root);
-//	for(int i=0;i<ansf.size();i++) {
-//		for(int j=0;j<ansf.get(i).size();j++) {
-//			System.out.print(ansf.get(i).get(j));
-//		}
-//		System.out.println();
-//	}
-//
-//}
+public void verticalOrder()
+{
+	HashMap<Integer,ArrayList<Integer>>map=new HashMap();
+	
+	verticalOrder(root,0,map);
+Set<Integer>keys=map.keySet();
+ArrayList<Integer>list=new ArrayList(keys);
+Collections.sort(list);
+for(int val:list)
+{
+	
+}
+	//System.out.println(map);
+}
 
+private void verticalOrder(Node root,int vl,HashMap<Integer,ArrayList<Integer>>map)
+{
+	if(root==null)
+	{
+		return;
+	}
+	
+	if(map.containsKey(vl))
+	{
+		ArrayList<Integer>temp=map.get(vl);
+		temp.add(root.val);
+		map.put(vl, temp);
+	}
+	else {
+		ArrayList<Integer>list=new ArrayList();
+		list.add(root.val);
+		map.put(vl, list);
+	}
+	
+	verticalOrder(root.left,vl-1,map);
+	verticalOrder(root.right,vl+1,map);
+	
+	
+	
+	
+	
+	
+	
+}
 
 }
